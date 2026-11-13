@@ -1,0 +1,35 @@
+/* ===== FX pack: efectos extra ===== */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+::selection{background:var(--p);color:#160b26}
+html{scrollbar-width:thin;scrollbar-color:var(--v) var(--bg)}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:linear-gradient(var(--v),var(--p));border-radius:9px}::-webkit-scrollbar-track{background:var(--bg)}
+.fx-prog{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--v),var(--p),#8ef0ff);z-index:9999;pointer-events:none;box-shadow:0 0 14px var(--p)}
+.fx-curtain{position:fixed;inset:0;background:var(--bg);z-index:10000;pointer-events:none;display:grid;place-items:center;animation:fxCur 1.1s .35s cubic-bezier(.77,0,.18,1) forwards}
+.fx-curtain i{width:54px;height:54px;border-radius:50%;border:3px solid #ffffff1a;border-top-color:var(--v);animation:fxSpin .8s linear infinite}
+@keyframes fxCur{to{clip-path:inset(0 0 100% 0);visibility:hidden}}@keyframes fxSpin{to{rotate:360deg}}
+.card{transform-style:preserve-3d;will-change:transform}
+.fx-spot,.fx-edge{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s}
+.fx-spot{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),#b27bff2e,transparent 60%)}
+.fx-edge{padding:1px;background:conic-gradient(from var(--ang),transparent 0 60%,var(--v),var(--p),#8ef0ff,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxAng 3.5s linear infinite}
+.card:hover .fx-spot,.card:hover .fx-edge{opacity:1}
+@keyframes fxAng{to{--ang:360deg}}
+.fx-rip{position:absolute;border-radius:50%;background:#ffffff55;transform:scale(0);animation:fxRip .7s ease-out forwards;pointer-events:none}
+@keyframes fxRip{to{transform:scale(1);opacity:0}}
+.btn.pri{animation:fxPulse 2.8s ease-in-out infinite}
+@keyframes fxPulse{0%,100%{box-shadow:0 0 0 0 #b27bff00}50%{box-shadow:0 0 28px 2px #b27bff66}}
+h2 em{background:linear-gradient(100deg,var(--v),var(--p),#8ef0ff,var(--v));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fxShine 5s linear infinite}
+@keyframes fxShine{to{background-position:-250% 0}}
+.bar i{position:relative;overflow:hidden}.bar i::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#fff6 50%,transparent 70%);transform:translateX(-100%);animation:fxSw 2.4s ease-in-out infinite}
+@keyframes fxSw{to{transform:translateX(100%)}}
+.av{animation:fxBob 4s ease-in-out infinite}
+@keyframes fxBob{50%{translate:0 -5px}}
+nav a:not(.btn){position:relative}nav a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:linear-gradient(90deg,var(--v),var(--p));transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+nav a:not(.btn):hover::after{transform:scaleX(1);transform-origin:0 50%}
+.logo:hover{animation:fxGl .45s steps(2) 2}
+@keyframes fxGl{0%{text-shadow:2px 0 var(--p),-2px 0 #8ef0ff;translate:1px 0}50%{text-shadow:-2px 0 var(--p),2px 0 #8ef0ff;translate:-1px 0}100%{text-shadow:none;translate:0}}
+.fx-dot{position:fixed;left:0;top:0;width:7px;height:7px;margin:-3.5px;border-radius:50%;pointer-events:none;z-index:9998;background:var(--c,var(--v));box-shadow:0 0 12px var(--c,var(--v))}
+.fx-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#14111acc;backdrop-filter:blur(10px);color:var(--ink);display:grid;place-items:center;cursor:pointer;z-index:90;opacity:0;translate:0 20px;pointer-events:none;transition:.4s cubic-bezier(.2,.9,.2,1)}
+.fx-top.on{opacity:1;translate:0 0;pointer-events:auto}.fx-top:hover{transform:translateY(-4px) scale(1.08);border-color:var(--v)}
+.fx-top svg{position:absolute;inset:0;rotate:-90deg}.fx-top circle{fill:none;stroke:var(--v);stroke-width:2.5;stroke-dasharray:138;stroke-dashoffset:calc(138 - 138*var(--sp,0))}
+body.fx-rb{animation:fxHue 6s linear infinite}@keyframes fxHue{to{filter:hue-rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.fx-curtain,.fx-prog,.fx-dot{display:none}}
